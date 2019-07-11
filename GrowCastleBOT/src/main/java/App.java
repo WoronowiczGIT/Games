@@ -3,7 +3,7 @@ import java.awt.event.InputEvent;
 
 public class App {
     private static Robot robot;
-    private static PointCalculator pc = new PointCalculator(new Point(1880, 701), new Point(1280, 1036));
+    private static PointCalculator pc = new PointCalculator(new Point(1877, 783), new Point(1427, 1036));
 
     private static Point battleStart = pc.getRelative(RelativePosition.BATTLE_START);
     private static Point controlPoint = pc.getRelative(RelativePosition.GAME_ON);
@@ -12,18 +12,23 @@ public class App {
 
     static Color addvertColor;
     static Color dragonColor;
-
+    static Color battleColor;
+    static Color gameColor;
     public static void main(String[] args) throws AWTException, InterruptedException {
         robot = new Robot();
+
         addvertColor = robot.getPixelColor(advertPoint.getX(),advertPoint.getY());
         dragonColor = robot.getPixelColor(dragonSelect.getX(),dragonSelect.getY());
+
+        battleColor = robot.getPixelColor(battleStart.getX(), battleStart.getY());
+        gameColor = robot.getPixelColor(controlPoint.getX(), controlPoint.getY());
 
         ArmyController armyController = new ArmyController();
         armyController.startThreads();
 
         while (true) {
-//           waveBattle(armyController);
-            farmItems();
+           waveBattle(armyController);
+//            farmItems();
         }
     }
     public static void farmItems() throws InterruptedException {
@@ -67,23 +72,18 @@ public class App {
     }
 
     public static void waveBattle(ArmyController armyController) throws InterruptedException {
-
-        Color battleColor = robot.getPixelColor(battleStart.getX(), battleStart.getY());
-        Color gameColor = robot.getPixelColor(controlPoint.getX(), controlPoint.getY());
-
+        watchADD();
         if(gameColor.equals(robot.getPixelColor(controlPoint.getX(), controlPoint.getY()))){
 
             waitForBattle(battleColor);
-
             ArmyController.action(battleStart.getX(), battleStart.getY());
-
             armyController.run();
         }else{
             ArmyController.setFight(false);
             System.out.println("game stopped");
         }
 
-        watchADD();
+
     }
 
 

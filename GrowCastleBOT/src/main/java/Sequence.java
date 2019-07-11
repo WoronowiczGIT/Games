@@ -16,9 +16,11 @@ public class Sequence extends Thread {
 
             try {
                 if (ArmyController.getFight()) {
+
                     ArmyController.action(where.getX(), where.getY());
+                    this.sleep(interval);
                 }
-                this.sleep(interval);
+
 
 
             } catch (InterruptedException e) {

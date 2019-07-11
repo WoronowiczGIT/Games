@@ -50,10 +50,10 @@ public class ArmyController {
     public static synchronized void action(int x, int y) throws InterruptedException {
         int oldX = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int oldY = (int) MouseInfo.getPointerInfo().getLocation().getY();
-
+        Thread.sleep(50);
         robot.mouseMove(x, y);
         App.click();
         robot.mouseMove(oldX, oldY);
-        Thread.currentThread().sleep(1500);
+        Thread.currentThread().sleep(1000);
     }
 }
