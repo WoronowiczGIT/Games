@@ -3,7 +3,7 @@ import java.awt.event.InputEvent;
 
 public class App {
     private static Robot robot;
-    private static PointCalculator pc = new PointCalculator(new Point(1877, 783), new Point(1427, 1036));
+    private static PointCalculator pc = new PointCalculator(new Point(1877, 695), new Point(1270, 1034));
 
     private static Point battleStart = pc.getRelative(RelativePosition.BATTLE_START);
     private static Point controlPoint = pc.getRelative(RelativePosition.GAME_ON);

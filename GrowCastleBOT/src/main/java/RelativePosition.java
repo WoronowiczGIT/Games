@@ -1,5 +1,5 @@
 public enum RelativePosition {
-    GAME_ON(2,2,0),
+    GAME_ON(1,3,0),
     BATTLE_START(92,92,52000),
     REPLAY(78,90,52000),
     REPLAY_MODE1(66,87,52000),
