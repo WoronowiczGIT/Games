@@ -110,7 +110,8 @@ public class App {
     public static void watchADD() throws InterruptedException {
         if(addvertColor.equals(robot.getPixelColor(advertPoint.getX(),advertPoint.getY()))){
             ArmyController.action(advertPoint.getX(),advertPoint.getY());
-
+            // add need some time to load
+            Thread.sleep(1000);
             while(!controlColor.equals(robot.getPixelColor(controlPoint.getX(),controlPoint.getY()))){
                 Thread.sleep(5000);
 
