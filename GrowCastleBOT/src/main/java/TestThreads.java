@@ -13,12 +13,18 @@ public class TestThreads {
 
         ChildThread ct3 = new ChildThread(printer, "child 2");
         ChildThread ct4 = new ChildThread(printer, "child 4");
+        ChildThread ct5 = new ChildThread(printer, "child 5");
+        ChildThread ct6 = new ChildThread(printer, "child 6");
+        ChildThread ct7 = new ChildThread(printer, "child 7");
 
 
         ft.start();
         ct1.start();
         ct3.start();
         ct4.start();
+        ct5.start();
+        ct6.start();
+        ct7.start();
 
         Thread.sleep(10000);
         stop = false;

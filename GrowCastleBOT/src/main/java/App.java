@@ -9,11 +9,15 @@ public class App {
     private static Point controlPoint = pc.getRelative(RelativePosition.GAME_ON);
     private static Point advertPoint = pc.getRelative(RelativePosition.WATCH_ADD);
     private static Point dragonSelect = pc.getRelative(RelativePosition.SELECT_DRAGON);
+    private static Point replayStart = pc.getRelative(RelativePosition.REPLAY);
+
 
     static Color addvertColor;
     static Color dragonColor;
     static Color battleColor;
-    static Color gameColor;
+    static Color controlColor;
+    static Color replayColor;
+
     public static void main(String[] args) throws AWTException, InterruptedException {
         robot = new Robot();
 
@@ -21,7 +25,8 @@ public class App {
         dragonColor = robot.getPixelColor(dragonSelect.getX(),dragonSelect.getY());
 
         battleColor = robot.getPixelColor(battleStart.getX(), battleStart.getY());
-        gameColor = robot.getPixelColor(controlPoint.getX(), controlPoint.getY());
+        replayColor = robot.getPixelColor(replayStart.getX(), replayStart.getY());
+        controlColor = robot.getPixelColor(controlPoint.getX(), controlPoint.getY());
 
         ArmyController armyController = new ArmyController();
         armyController.startThreads();
@@ -73,7 +78,7 @@ public class App {
 
     public static void waveBattle(ArmyController armyController) throws InterruptedException {
         watchADD();
-        if(gameColor.equals(robot.getPixelColor(controlPoint.getX(), controlPoint.getY()))){
+        if(controlColor.equals(robot.getPixelColor(controlPoint.getX(), controlPoint.getY()))){
 
             waitForBattle(battleColor);
             ArmyController.action(battleStart.getX(), battleStart.getY());
@@ -82,29 +87,47 @@ public class App {
             ArmyController.setFight(false);
             System.out.println("game stopped");
         }
-
-
     }
+    public static void replayBattle(ArmyController armyController) throws InterruptedException {
+        watchADD();
+
+        Point replayMode = pc.getRelative(RelativePosition.REPLAY_MODE1);
+
+        if(controlColor.equals(robot.getPixelColor(controlPoint.getX(), controlPoint.getY()))){
+
+            waitForBattle(replayColor);
+            ArmyController.action(replayStart.getX(), replayStart.getY());
+            ArmyController.action(replayMode.getX(), replayMode.getY());
+            armyController.run();
+        }else{
+            ArmyController.setFight(false);
+            System.out.println("game stopped");
+        }
+    }
+
 
 
     public static void watchADD() throws InterruptedException {
         if(addvertColor.equals(robot.getPixelColor(advertPoint.getX(),advertPoint.getY()))){
             ArmyController.action(advertPoint.getX(),advertPoint.getY());
 
-            Thread.sleep(32000);
+            while(!controlColor.equals(robot.getPixelColor(controlPoint.getX(),controlPoint.getY()))){
+                Thread.sleep(5000);
 
-            int startX = pc.getRelative(RelativePosition.CLOSE_ADD_MAX).getX();
-            int startY = pc.getRelative(RelativePosition.CLOSE_ADD_MAX).getY();
+                int startX = pc.getRelative(RelativePosition.CLOSE_ADD_MAX).getX();
+                int startY = pc.getRelative(RelativePosition.CLOSE_ADD_MAX).getY();
 
-            int finishX = pc.getRightTop().getX();
-            int finishY = pc.getRightTop().getY();
+                int finishX = pc.getRightTop().getX();
+                int finishY = pc.getRightTop().getY();
 
-            for (int x = startX; x < finishX-5; x+=10) {
-                for (int y = startY; y > finishY+5; y-=10) {
-                    robot.mouseMove(x,y);
-                    click();
+                for (int x = startX; x < finishX-5; x+=10) {
+                    for (int y = startY; y > finishY+5; y-=10) {
+                        robot.mouseMove(x,y);
+                        click();
+                    }
                 }
             }
+
             System.out.println("watched add");
         }
 

@@ -1,6 +1,8 @@
 public enum RelativePosition {
     GAME_ON(2,2,0),
     BATTLE_START(92,92,52000),
+    REPLAY(78,90,52000),
+    REPLAY_MODE1(66,87,52000),
 
     WATCH_ADD(48,86,0),
     CLOSE_ADD_MAX(93,10,0),
@@ -11,12 +13,12 @@ public enum RelativePosition {
     BLACK_DRAGON(89,38,0),
     RED_DRAGON(89,54,0),
 
-    ARCHER(29,39,1300),
-    ARCHER2(23,39,1200),
-    BISHOP(29,25,1100),
-    SMITH(29,11,25000),
-    WITCH1(29,43,900),
-    WITCH2(36,43,900),
+    ARCHER(29,39,100),
+    ARCHER2(23,39,100),
+    BISHOP(29,25,100),
+    SMITH(29,11,100),
+    WITCH1(29,53,100),
+    WITCH2(35,53,100),
 
     ;
     double xPercent;

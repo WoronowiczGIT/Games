@@ -66,6 +66,6 @@ public class ArmyController {
         robot.mouseMove(x, y);
         App.click();
         robot.mouseMove(oldX, oldY);
-        Thread.currentThread().sleep(1000);
+        Thread.currentThread().sleep(500);
     }
 }
