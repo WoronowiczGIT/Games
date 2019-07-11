@@ -11,9 +11,12 @@ public enum RelativePosition {
     BLACK_DRAGON(89,38,0),
     RED_DRAGON(89,54,0),
 
-    ARCHER(29,39,1000),
-    ARCHER2(23,39,1000),
-    BISHOP(29,25,1000)
+    ARCHER(29,39,1300),
+    ARCHER2(23,39,1200),
+    BISHOP(29,25,1100),
+    SMITH(29,11,25000),
+    WITCH1(29,43,900),
+    WITCH2(36,43,900),
 
     ;
     double xPercent;
