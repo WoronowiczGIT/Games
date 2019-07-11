@@ -1,8 +1,10 @@
 // TDL threads with flag , threads synchronized, threads unsychnronized
 
 public class TestThreads {
-   static boolean stop = true;
-
+    private static boolean stop = true;
+    public static boolean getFlag(){
+        return stop;
+    }
     public static void main(String[] args) throws InterruptedException {
         Printer printer = new Printer();
 
@@ -10,10 +12,14 @@ public class TestThreads {
         ChildThread ct1 = new ChildThread(printer, "child 1");
 
         ChildThread ct3 = new ChildThread(printer, "child 2");
+        ChildThread ct4 = new ChildThread(printer, "child 4");
 
 
         ft.start();
         ct1.start();
+        ct3.start();
+        ct4.start();
+
         Thread.sleep(10000);
         stop = false;
         System.out.println(printer.counter);
@@ -35,16 +41,18 @@ class FatherThread extends Thread {
     ChildThread ct2;
 
     FatherThread(Printer p, String s) {
+
         printer = p;
         this.s = s;
         ct2 = new ChildThread(printer, "Child 2");
     }
 
     public void run() {
-        while (TestThreads.stop) {
+        while (TestThreads.getFlag()) {
             try {
 
-                this.sleep(100);
+                this.sleep(5000);
+                System.out.println("5 seconds up");
                 printer.print(s);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -66,7 +74,7 @@ class ChildThread extends Thread {
     public void run() {
         while (true) {
             try {
-                this.sleep(150);
+                this.sleep(250);
                 printer.print(i);
             } catch (InterruptedException e) {
                 e.printStackTrace();

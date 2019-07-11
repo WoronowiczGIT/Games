@@ -9,6 +9,14 @@ public class PointCalculator {
         this.leftBottom = leftBottom;
     }
 
+    public Point getRightTop() {
+        return rightTop;
+    }
+
+    public Point getLeftBottom() {
+        return leftBottom;
+    }
+
     public Point getRelative(RelativePosition pos){
 
         double xPercent = pos.xPercent;
