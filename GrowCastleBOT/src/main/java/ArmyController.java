@@ -55,10 +55,6 @@ public class ArmyController {
         fightON = fight;
     }
 
-    public Color getColor(int x, int y) {
-        return robot.getPixelColor(x, y);
-    }
-
     public static synchronized void action(int x, int y) throws InterruptedException {
         int oldX = (int) MouseInfo.getPointerInfo().getLocation().getX();
         int oldY = (int) MouseInfo.getPointerInfo().getLocation().getY();

@@ -1,8 +1,11 @@
 public enum RelativePosition {
-    GAME_ON(1,3,0),
+    CONTROL_POINT(1,3,0),
     BATTLE_START(92,92,52000),
     REPLAY(78,90,52000),
     REPLAY_MODE1(66,87,52000),
+
+    MID_POINT(50,50,0),
+    CLOSE(75,69,0),
 
     WATCH_ADD(48,86,0),
     CLOSE_ADD_MAX(93,10,0),
